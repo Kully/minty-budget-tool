@@ -1,6 +1,5 @@
 CONFIG = {"displayModeBar": False}
-MARGIN_BELOW_CHARTS_ROW = {"margin-bottom": "2rem"}
-MARGIN_BELOW_CHARTS_ROW = {"margin-bottom": "2.5rem"}
+MARGIN_BELOW_CHARTS_ROW = {"margin-bottom": "2.5rem"}  # 2.0
 UNDERLINE_STYLE = {"textDecoration": "underline"}
 RED_COLOR = "#ff7851"
 GREEN_COLOR = "#56CC9D"
@@ -10,4 +9,3 @@ META_TAGS_LOGIN_PAGE = [{"name": "viewport", "content": "width=device-width, ini
 META_TAGS_APP_PAGE = [{"name": "viewport", "content": "user-scalable=no"}]
 NAVBAR_TITLE = "Budget App"
 NAVBAR_SUBTITLE = "Insights and Metrics"
-TITLE_STYLE = {"font-size": "3rem"}

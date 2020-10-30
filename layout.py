@@ -26,7 +26,10 @@ def layout(df, transaction_category_array,
                 ],
                 value="2020-08",
             ),
-            className="col-md-12 col-lg-8"
+            md=12, lg=8,
+            # width=12,
+            # className="col-sm-12",
+            # className="col-md-12 col-lg-8"
         ),
         dbc.Col(
             dbc.Button(
@@ -34,7 +37,11 @@ def layout(df, transaction_category_array,
                 id="open-add-budget-modal",
                 color="info",
             ),
-            className="col-md-6 col-lg-2"
+            md=6, lg=2,
+            # width=6,
+            
+            # className="col-sm-12",
+            # className="col-md-6 col-lg-2"
         ),
         dbc.Col(
             dbc.Button(
@@ -42,27 +49,31 @@ def layout(df, transaction_category_array,
                 id="open-remove-budget-modal",
                 color="danger",
             ),
-            className="col-md-6 col-lg-2"
+            md=6, lg=2,
+            # width=6,
+            # className="col-md-6 col-lg-2",
         ),
         dbc.Tooltip("Add a new budget or update an existing one",
                     target="open-add-budget-modal"),
         dbc.Tooltip("Remove an existing budget",
                     target="open-remove-budget-modal"),
 
-    ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW),
+    ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW
+    ),
     dbc.Row([
         dbc.Col([
             dcc.Graph(
                 id="budget-bar-chart", config=CONFIG,
             ),
-        ], width=8, md=12, lg=8),
+        ], width=12 #, md=12, lg=8
+        ),
         dbc.Col(
             dbc.Card(
                 dbc.CardBody(
                     html.Span(html.Span(id="budget-card-text")),
                 ),
                 id="card-for-budget-chart"
-            ), width=4, md=12, lg=4
+            ), width=12 #, md=12, lg=4
         ),
     ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW),
     dbc.Modal([
@@ -147,7 +158,7 @@ def layout(df, transaction_category_array,
         dbc.Col(
             dbc.Card(
                 dbc.CardBody([
-                    html.H3("Spending by Category"),
+                    html.H4("Spending by Category"),
                     html.Span(html.Span(id="insights-card-text")),
                 ]),
             ),

@@ -53,33 +53,57 @@ label {
     width: 100%;
     margin-bottom: 2rem;
 }
+
 #transaction-table {
     font-size: 0.9rem;
 }
+
 #login-form-div > h2 {
     text-align: center;
 }
-#login-form-div, #credentials-alert {
-    /*max-width: 400px;*/
-    /*width: 100%;*/
-    width: 400px;
 
-    margin-left: auto;
-    margin-right: auto;
+#login-form-div {
+    width: 100%;
+    max-width: 600px;
     margin-top: 10px;
     animation: fadeIn 0.7s forwards 0.1s;
     opacity: 0;
     font-size: 1rem;
-    /*font-size: 2vh;*/
+    outline: 3px solid green;
+}
+
+#credentials-alert {
+    margin-top: 10px;
+    animation: fadeIn 0.7s forwards 0.1s;
+    opacity: 0;
+    font-size: 1rem;
+    outline: 2px dotted orange;
+
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
 }
 
 #top-nav {
     opacity: 0;
     animation: fadeIn 0.4s forwards;
+    /*outline: 1px solid blue;*/
 }
+#app-content {
+    outline: 1px solid red;
 
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
 .login-title {
     font-size: 3rem;
+    text-align: center;
+    outline: 1px solid lightblue;
+
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
 }
 
 #username-input {
@@ -207,16 +231,7 @@ label {
 }
 
 
-@media only screen and (max-width: 400px) {
-    #login-form-div {
-        width: 399px;
-        padding: 0;
-        margin: 0;
-    }
-    /*#credentials-alert {
-        width: 100%;
-    }*/
-}
+
 /*@media all and (min-width: 401px) and (max-width: 600px) {
     #login-form-div, #credentials-alert {
         width: 400px;

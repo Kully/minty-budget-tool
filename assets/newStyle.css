@@ -1,0 +1,249 @@
+body {
+    /*font-size: 14px;*/
+    /*margin: 2rem;*/
+    /*font-size: 20px;*/
+    /*line-height: 1.5;*/
+    margin: 1rem;
+}
+
+
+
+h1 {
+    font-size: 1.9rem;
+    color: #555 !important;
+    letter-spacing: -1px;
+    font-weight: 100 !important;
+}
+
+h4 {
+    color: #777 !important;
+}
+
+/*h2 {
+    font-size: 1.7rem;
+}
+h3 {
+    font-size: 1.5rem;
+}*/
+
+
+
+/*h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}*/
+
+label {
+    color: #001;
+}
+
+._dash-loading {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    left: calc(50% - 120px);
+    top: calc(50% - 120px);
+    animation: spin 0.5s infinite linear;
+    font-size: 0;
+    border-radius: 50%;
+    border: 10px solid #fafafa;
+    border-left: 10px solid #56CC9D;
+    border-left: 10px solid #56CC9D;
+}
+
+.dash-logout-btn:focus {
+    background-color: rgb(58,62,67) !important;
+    color: white;
+}
+
+#navbar {
+    border-radius: 4px;
+    z-index: 100;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#transaction-table {
+    font-size: 0.9rem;
+}
+
+#login-form-div > h2 {
+    text-align: center;
+}
+
+
+#login-form-div {
+    margin-top: 10px;
+    animation: fadeIn 0.7s forwards 0.1s;
+    opacity: 0;
+    font-size: 1rem;
+}
+
+#credentials-alert {
+    margin-top: 10px;
+    animation: fadeIn 0.7s forwards 0.1s;
+    opacity: 0;
+    font-size: 1rem;
+    width: 100%;
+}
+
+#top-nav {
+    opacity: 0;
+    animation: fadeIn 0.4s forwards;
+}
+#app-content {
+    width: 100%;
+}
+.login-title {
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+}
+
+#username-input {
+    width: 100%;
+}
+#password-input {
+    width: 100%;
+}
+#username-greeting {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* CSS Classes */
+.floatRight {
+    position: relative;
+    float: right;
+}
+.hiddenDiv {
+    display: none;
+}
+
+/* Below are Dash Component Class Names */
+.DateRangePickerInput {
+    border: 2px solid #588F6A;
+    transition: 0.2s;
+}
+.DateRangePickerInput:hover {
+    border: 2px solid #56CC9D;
+}
+.DateInput_input {
+    cursor: pointer;
+    transition: 0.2s;
+}
+.DateInput_input:hover {
+    color: #56CC9D;
+}
+
+.collapse-style {
+    border: 1px solid #223;
+    position: absolute;
+    z-index: 80;
+    background-color: #fafafa;
+    height: 200px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+/* row 1 */
+#budget-bar-chart {
+    height: 20vh;
+    max-height: 300px;
+    margin-bottom: 1rem;
+}
+
+/* row 2 */
+#insights-bar-chart {
+    height: 40vh;
+    max-height: 400px;
+    margin-bottom: 1rem;
+}
+#pie-chart {
+    height: 40vh;
+    max-height: 400px;
+}
+
+#transactions-line-chart {
+    height: 60vh;
+    max-height: 300px;
+    width: 100%;
+}
+/*.previous-next-container {
+    width: 100%;
+}*/
+
+.margin-right {
+    margin-right: 4px;
+}
+
+.a-card {
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 5vh;
+    opacity: 0;
+    animation: fadeIn 0.6s 0.1s forwards;
+}
+
+#budget-month-select {
+    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+}
+
+#open-add-budget-modal {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    margin-bottom: 0.2em;
+}
+#open-remove-budget-modal {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    right: 0;
+    margin: 0;
+}
+
+.title-style {
+    font-size: 2.4rem;
+    color: #556 !important;
+    font-weight: 900;
+    line-height: 1.5rem;
+}
+
+.subtitle_style {
+    color: #aab;
+    font-weight: 10;
+    letter-spacing": 0.01rem;
+    font-size": 1.5rem;
+}
+
+.floatRightStyle {
+    float: right;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(0, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes spin {
+    from {transform: rotate(0);}
+      to {transform: rotate(360deg);}
+}

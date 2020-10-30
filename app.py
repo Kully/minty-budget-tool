@@ -28,7 +28,10 @@ user_pwd, user_names = users_info()
 app = dash.Dash(
     __name__,
     external_stylesheets=[dbc.themes.MINTY],
-    suppress_callback_exceptions=True
+    suppress_callback_exceptions=True,
+    meta_tags=[
+        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+    ]
 )
 server = app.server
 
@@ -110,6 +113,8 @@ def sum_of_category_expense_between_dates(df_filter, category,
     )
     sum_of_amounts = df_filter["Amount"].sum()
     return round(sum_of_amounts, 2)
+
+# original login form
 
 # login_form = dbc.Form(
 #     [
@@ -297,7 +302,8 @@ def budget_bar_chart(dataframe, category_budget_hash, yearMonth="2020-08"):
     fig.update_traces(marker_line_width=0, opacity=0.9)
     fig.update_layout(
         barmode="group", bargap=0.2, title="Budget Goals",
-        margin=dict(l=0,r=0,t=50,b=0), plot_bgcolor=PLOT_BGCOLOR,
+        margin=dict(l=0,r=0,t=40,b=0),
+        plot_bgcolor=PLOT_BGCOLOR,
         xaxis=dict(fixedrange=True),
         yaxis=dict(fixedrange=True),
     )
@@ -407,17 +413,17 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
                        className="floatRightStyle")],
         ),
         html.P(
-            [html.Span("Total Income for Period:"),
+            [html.Span("Total Income:"),
              html.Span(total_income_for_period,
                        className="floatRightStyle")],
         ),
         html.P(
-            [html.Span("Most Spent Category:"),
+            [html.Span("Most Spent:"),
              html.Span(most_spent_category,
                        className="floatRightStyle")],
         ),
         html.P(
-            [html.Span("Least Spent Category:"),
+            [html.Span("Least Spent:"),
              html.Span(least_spent_category,
                        className="floatRightStyle")],
         ),
@@ -460,12 +466,14 @@ def serve_layout():
 
     # landing login page
     if session_cookie not in user_names.keys():
-        topnav = html.H1(
-            "Log In", style={"textAlign": "center"},
-            className="login-title")
+        topnav = html.Div(
+            html.H1("Log In"),
+            className="login-title"
+        )
         return html.Div([
             html.Div(topnav, id="top-nav"),
-            html.Div(login_form, id="app-content"),
+            login_form,
+            # html.Div(login_form, id="app-content"),
             dbc.Alert([
                 html.H5("Log in credentials", className="alert-heading"),
                 html.Span([
@@ -512,8 +520,8 @@ def serve_layout():
 
         topnav = dbc.Navbar([
             dbc.NavbarBrand(
-                NAVBAR_TITLE, className="ml-2",
-                style=TITLE_STYLE
+                NAVBAR_TITLE,
+                className="ml-2 title-style",
             ),
             dbc.NavbarBrand(
                 NAVBAR_SUBTITLE,
@@ -672,7 +680,7 @@ def update_budget_card_contents(n1, n2, yearMonth, jsonified_data,
         balance_text = "-$" + str(balance)[1:]
 
     output = [
-        html.H3(f"Budget Metrics"),
+        html.H4(f"Budget Metrics"),
         html.P(
             f"For {month_abbr}, {year}",
             className="subtitle_style",
