@@ -1,6 +1,7 @@
 import calendar
 import datetime
 import json
+import os
 import random
 
 import dash
@@ -25,6 +26,98 @@ from util.constants import *
 
 user_pwd, user_names = users_info()
 
+
+APP_LOGO = os.path.join("assets", "zyphr-tight.png")
+APP_TITLE = "Zyphr"
+
+
+def Header(title):
+    """
+    Construct a header with the given title.
+    """
+    return html.Div(
+        style={"marginBottom": 0},
+        children=[html.H1(style={"fontSize": 30}, children=title), html.Br()],
+    )
+
+
+def new_login(topnav):
+    return html.Div(
+        id="login-page",
+        children=[
+            topnav,
+            html.Div(
+                html.Img(src=APP_LOGO, height="80px"),
+            ),
+            html.Div(
+                Header("Sign in to Budget App"),
+            ),
+            dbc.Card(
+                id="login-card",
+                children=dbc.CardBody(
+                    html.Form(
+                        id="login-form",
+                        action="/login",
+                        method="POST",
+                        children=[
+                            dbc.Label("Username", html_for="login-username"),
+                            dbc.Input(
+                                id="username-input",
+                                name="login-username",
+                                type="text",
+                                value="bob",
+                            ),
+                            html.Br(),
+                            dbc.Label("Password", html_for="login-password"),
+                            dbc.Input(
+                                id="password-input",
+                                name="login-password",
+                                value="bob@123",
+                                type="password",
+                            ),
+                            html.Br(),
+                            dbc.Button(
+                                "Login",
+                                id="submit-button",
+                                type="submit",
+                                color="primary",
+                                block=True,
+                            ),
+                        ]
+                    )
+                ),
+                color="light",
+            ),
+        ],
+    )
+
+
+# old_login_page = html.Div([
+#     html.Div(topnav, id="top-nav"),
+#     login_form,
+#     dbc.Alert([
+#         html.H5("Log in credentials", className="alert-heading"),
+#         html.Span([
+#             html.Span("Usr "),
+#             html.B("bob", style=UNDERLINE_STYLE),
+#             html.Span(", Pwd "),
+#             html.B("bob@123 ", style=UNDERLINE_STYLE),
+#         ]),
+#         html.Br(),
+#         html.Span([
+#             html.Span("Usr "),
+#             html.B("sally", style=UNDERLINE_STYLE),
+#             html.Span(", Pwd "),
+#             html.B("sally@123 ", style=UNDERLINE_STYLE),
+#         ]),
+#         ],
+#         color="light",
+#         id="credentials-alert",
+#         dismissable=True,
+#     )
+# ])
+
+
 app = dash.Dash(
     __name__,
     external_stylesheets=[dbc.themes.MINTY],
@@ -38,8 +131,8 @@ server = app.server
 @app.server.route("/login", methods=["POST"])
 def route_login():
     data = flask.request.form
-    username = data.get("username")
-    password = data.get("password")
+    username = data.get("login-username")
+    password = data.get("login-password")
 
     if username not in user_pwd.keys() or  user_pwd[username] != password:
         return flask.redirect("/login")
@@ -138,26 +231,26 @@ def sum_of_category_expense_between_dates(df_filter, category,
 # )
 
 
-login_form = html.Div([
-    dbc.Row([
-        dbc.Col(
-            width=12,
-            children=[
-                html.Form([
-                    dbc.Label("Username"),
-                    dbc.Input(placeholder="username", name="username",
-                              type="text", id="username-input", value="bob"),
-                    dbc.Label("Password"),
-                    dbc.Input(placeholder="password", name="password",
-                              type="password", id="password-input", value="bob@123"),
-                    html.Br(),
-                    html.Button("Login", className="btn btn-block btn-primary",
-                                type="submit", id="submit-button"),
-                ], action="/login", method="post")
-            ]
-        ),
-    ]),
-], id="login-form-div")
+# login_form = html.Div([
+#     dbc.Row([
+#         dbc.Col(
+#             width=12,
+#             children=[
+#                 html.Form([
+#                     dbc.Label("Username"),
+#                     dbc.Input(placeholder="username", name="username",
+#                               type="text", id="username-input", value="bob"),
+#                     dbc.Label("Password"),
+#                     dbc.Input(placeholder="password", name="password",
+#                               type="password", id="password-input", value="bob@123"),
+#                     html.Br(),
+#                     html.Button("Login", className="btn btn-block btn-primary",
+#                                 type="submit", id="submit-button"),
+#                 ], action="/login", method="post")
+#             ]
+#         ),
+#     ]),
+# ], id="login-form-div")
 
 #     html.Form([
 #         dbc.Label("Username"),
@@ -467,34 +560,11 @@ def serve_layout():
     # landing login page
     if session_cookie not in user_names.keys():
         topnav = html.Div(
-            html.H1("Log In"),
+            html.H1(""),
             className="login-title"
         )
-        return html.Div([
-            html.Div(topnav, id="top-nav"),
-            login_form,
-            # html.Div(login_form, id="app-content"),
-            dbc.Alert([
-                html.H5("Log in credentials", className="alert-heading"),
-                html.Span([
-                    html.Span("Usr "),
-                    html.B("bob", style=UNDERLINE_STYLE),
-                    html.Span(", Pwd "),
-                    html.B("bob@123 ", style=UNDERLINE_STYLE),
-                ]),
-                html.Br(),
-                html.Span([
-                    html.Span("Usr "),
-                    html.B("sally", style=UNDERLINE_STYLE),
-                    html.Span(", Pwd "),
-                    html.B("sally@123 ", style=UNDERLINE_STYLE),
-                ]),
-                ],
-                color="light",
-                id="credentials-alert",
-                dismissable=True,
-            ),
-        ])
+        return new_login(topnav)
+
     # show the app
     else:
         greeting_and_logout_button = dbc.Row(
