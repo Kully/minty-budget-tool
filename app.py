@@ -79,7 +79,6 @@ def new_login(topnav):
                             dbc.Button(
                                 "Login",
                                 id="submit-button",
-                                type="submit",
                                 color="primary",
                                 block=True,
                             ),
